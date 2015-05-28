@@ -46,7 +46,7 @@ environnement si on sait que le SGBD sera changé par la suite.
 
 ### SELECT 
 
-```
+```SQL
 SELECT {* / col1, [col2, [col3...]]} 
 	FROM tableName
 	[{INNER / LEFT / RIGHT} JOIN tableToJoin on (condition)]
@@ -61,7 +61,7 @@ SELECT {* / col1, [col2, [col3...]]}
 UPDATE modifie un tuple qui existe déjà.
 
 
-```
+```SQL
 UPDATE tableName
 	SET col1 = expression1,
 		[col2 = expression2,
@@ -101,7 +101,7 @@ Si aucune condition fournie, tous les tuples sont supprimées si
 les contraintes le permettent.
 
 
-```
+```SQL
 DELETE FROM tableName
 	[WHERE (condition)]
 ```
@@ -110,7 +110,7 @@ DELETE FROM tableName
 
 INSERT insère un/des tuple(s) dans une table.
 
-```
+```SQL
 INSERT INTO tableName [ (colNamesList) ]
 	{ VALUES(colValues) / 
 	  SELECT STATEMENT }
@@ -132,14 +132,15 @@ la base de données d'un état cohérent vers un autre état cohérent.
 Une transaction a un début et une fin.
 
 Une transaction doit respectr le principe *ACID* :
-	* A : Atomicity 
-		+ Une transaction est indivisible, tout est effectué 
-		ou rien n'est effectué.
-	* C : Consistency 
-	* I : Isolation 
-		+ Une transaction est isolée des autres transactions.
-		(Pas d'effets pervers)
-	* D : Durability
+
+* A : Atomicity 
+	+ Une transaction est indivisible, tout est effectué 
+	ou rien n'est effectué.
+* C : Consistency 
+* I : Isolation 
+	+ Une transaction est isolée des autres transactions.
+	(Pas d'effets pervers)
+* D : Durability
 
 *Attention*, une transaction ne fonctionne que sur le DML.
 
@@ -147,7 +148,7 @@ Une transaction doit respectr le principe *ACID* :
 
 COMMIT termine et valide une transaction.
 
-```
+```SQL
 COMMIT;
 ```
 
@@ -155,7 +156,7 @@ COMMIT;
 
 ROLLBACK termine et annule une transaction.
 
-```
+```SQL
 ROLLBACK;
 ```
 
@@ -196,7 +197,7 @@ ajout de contraintes, etc.
 
 ### Création d'une table (CREATE TABLE)
 
-```
+```SQL
 CREATE TABLE tableName (
 	colName1 type[(size)] [CONSTRAINT] [DEFAULT value] [NOT NULL] [,
 	colName2 type[(size)] [, 
@@ -247,25 +248,25 @@ CREATE TABLE tableName (
 
 CONSTRAINT : 
 
-```
+```SQL
 [CONSTRAINT constraintName] newConstraint
 ```
 
 où newConstraint est une des contraintes cité ci dessus.
 
-```
+```SQL
 CONSTRAINT PK_tableName PRIMAREY KEY(colName(s))
 ```
 
-```
+```SQL
 CONSTRAINT U_tableName_Col1 UNIQUE(colName(s))
 ```
 
-```
+```SQL
 CONSTRAINT check_condition CHECK(condition)
 ```
 
-```
+```SQL
 CONSTRAINT FK_col1_otherTable_col2 
 	FOREIGN KEY col1
 	REFERENCES otherTable(col2)
@@ -298,7 +299,7 @@ Cela permet de modifier la base de données et la mettre dans un
 état incohérent tout en pouvant la remettre dans un état cohérent 
 avant la fin de la transaction.
 
-```
+```SQL
 DEFERRABLE [INITIALLY {DEFERRED / IMMEDIATE}]
 ```
 
@@ -309,7 +310,7 @@ Quand on ne précise rien, l'option par défaut du système est appliquée.
 
 On peut modifier la valeur d'une contrainte *définie DEFERRABLE* avec :
 
-```
+```SQL
 SET CONSTRAINTS {constraintsList / ALL} {IMMEDIATE / DEFERRED}
 ```
 

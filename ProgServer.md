@@ -10,7 +10,7 @@ CREATE Procedure nomProc(...) IS
 	BEGIN
 	/* Code de la procédure */
 	EXCEPTION /* WHEN nom_exception */
-	/* Code de l'exception lancée /*
+	/* Code de l'exception lancée */
 	END;
 ```
 ### Création de fonction
@@ -22,7 +22,7 @@ CREATE Function nomFunction(...) RETURN typeRetour
 	BEGIN
 	/* Code de la fonction */
 	EXCEPTION /* WHEN nom_exception */
-	/* Code de l'exception lancée /*
+	/* Code de l'exception lancée */
 	END;
 ```
 

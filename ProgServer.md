@@ -44,10 +44,11 @@ CREATE OF REPLACE FUNCTION ToComparableString(chaine VARCHAR)
 	END;
 ```
 
-select * from ancien
-where toComparableString(ancnom) = toComparableString(?)
-order by ToComparableString(ancnom);
-
+```SQL
+SELECT * FROM Ancien
+WHERE ToComparableString(ancnom) = ToComparableString(?) -- ? == Pas vu ce que le prof a noté.
+ORDER BY ToComparableString(ancnom);
+```
 
 
 ```SQL

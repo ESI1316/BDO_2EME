@@ -8,7 +8,9 @@ Utilisation des stored procedures selon l'environnement.
 CREATE Procedure nomProc(...) IS 
 	/* Déclaration de variable */
 	BEGIN
-	...
+	/* Code de la procédure */
+	EXCEPTION /* WHEN nom_exception */
+	/* Code de l'exception lancée /*
 	END;
 ```
 ### Création de fonction
@@ -18,7 +20,9 @@ CREATE Function nomFunction(...) RETURN typeRetour
 	 [Deterministic] IS
 	/* Déclaration de variable */
 	BEGIN
-	 ...
+	/* Code de la fonction */
+	EXCEPTION /* WHEN nom_exception */
+	/* Code de l'exception lancée /*
 	END;
 ```
 

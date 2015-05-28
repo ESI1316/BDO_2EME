@@ -132,14 +132,15 @@ la base de données d'un état cohérent vers un autre état cohérent.
 Une transaction a un début et une fin.
 
 Une transaction doit respectr le principe *ACID* :
-	* A : Atomicity 
-		+ Une transaction est indivisible, tout est effectué 
-		ou rien n'est effectué.
-	* C : Consistency 
-	* I : Isolation 
-		+ Une transaction est isolée des autres transactions.
-		(Pas d'effets pervers)
-	* D : Durability
+
+* A : Atomicity 
+	+ Une transaction est indivisible, tout est effectué 
+	ou rien n'est effectué.
+* C : Consistency 
+* I : Isolation 
+	+ Une transaction est isolée des autres transactions.
+	(Pas d'effets pervers)
+* D : Durability
 
 *Attention*, une transaction ne fonctionne que sur le DML.
 

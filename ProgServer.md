@@ -4,20 +4,22 @@ Utilisation des stored procedures selon l'environnement.
 
 ### Création de procedure 
 
-```
+```SQL
 CREATE Procedure nomProc(...) IS 
+	/* Déclaration de variable */
+	BEGIN
 	...
-	...
-	...
+	END;
 ```
 ### Création de fonction
 
-```
+```SQL
 CREATE Function nomFunction(...) RETURN typeRetour
 	 [Deterministic] IS
-
+	/* Déclaration de variable */
+	BEGIN
 	 ...
-	 ...
+	END;
 ```
 
 Deterministic -> Délivre les mêmes résultats à chaque fois pour les
@@ -26,7 +28,7 @@ Si une fonction est deterministic mais pas précisé, on ne peut pas
 l'utiliser pour un index.
 
 
-```
+```SQL
 CREATE OF REPLACE FUNCTION ToComparableString(chaine VARCHAR)
 	RETURN VARCHAR DETERMINISTIC IS
 
@@ -44,11 +46,11 @@ order by ToComparableString(ancnom);
 
 
 
-```
+```SQL
 CREATE INDEX NomComparableNdx ON ANCIEN(ToComparableString(ancnom))
 ```
 
-```
+```SQL
 select wm_concat(empnom) 
 	from employe
 	group by empdp
@@ -97,23 +99,24 @@ l'éxécution du insert, update, delete.
 
 
 Exemples : 
+
 ```SQL
-	CREATE TABLE TestTrg( 
-		id int primary key,
-		nom varchar(100) not null);
+CREATE TABLE TestTrg( 
+	id int primary key,
+	nom varchar(100) not null);
 
-	Empecher de modifier la clé primaire :
+Empecher de modifier la clé primaire :
 
-	CREATE TRIGGER PkTestTrgStable
-		BEFORE
-		UPDATE of id
-		ON TestTrg 
-			BEGIN
-				-- Lancement d'une exception
-				RAISE_APPLICATION_ERROR(-20100, 'La PK ne peut pas être
-				modifié');
-				
-			END;
+CREATE TRIGGER PkTestTrgStable
+	BEFORE
+	UPDATE of id
+	ON TestTrg 
+		BEGIN
+			-- Lancement d'une exception
+			RAISE_APPLICATION_ERROR(-20100, 'La PK ne peut pas être 
+			modifié');
+			
+		END;
 ```
 
 

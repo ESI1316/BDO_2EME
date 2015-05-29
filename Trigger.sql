@@ -24,18 +24,18 @@ CREATE OR REPLACE TRIGGER gereNbEmployes
 	REFERENCING OLD AS old NEW AS new 
 	FOR EACH ROW
 	BEGIN 
-		IF (INSERTING) THEN
+		IF (INSERTING OR UPDATING) THEN
 			UPDATE DEPARTEMENT 
-			SET dptNbEmps = dptnbEmps + 1
-			WHERE dptNo = :new.empDpt;
-	END IF;
-
-	IF (DELETING OR UPDATING) THEN
-		UPDATE DEPARTEMENT 
-			SET dptNbEmps = dptnbEmps - 1
-			WHERE dptNo = :old.empDpt;
-	END IF;
-
+				SET dptNbEmps = dptnbEmps + 1
+				WHERE dptNo = :new.empDpt;
+		
+		END IF;
+		
+		IF (DELETING OR UPDATING) THEN
+			UPDATE DEPARTEMENT 
+				SET dptNbEmps = dptnbEmps - 1
+				WHERE dptNo = :old.empDpt;
+		END IF;
 	END;
 
 /* Exercice 3 */
